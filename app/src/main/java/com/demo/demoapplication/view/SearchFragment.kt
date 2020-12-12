@@ -47,7 +47,10 @@ class SearchFragment : Fragment() {
             }
 
             override fun onQueryTextSubmit(query: String): Boolean {
+
+                //TODO check internet before requesting
                 searchFragmentViewModel.getAcronymsFromRepository(query)
+                //searchFragmentViewModel.mLivaData.observe()
                 return false
             }
 
