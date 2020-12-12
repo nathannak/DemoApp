@@ -6,6 +6,7 @@ import kotlinx.coroutines.*
 import retrofit2.Response
 import javax.inject.Inject
 
+//Inject retrofit via constructor
 class Repository  @Inject constructor (val repository: RepositoryDependencies) {
 
     var response : Response<Acronym>? = null
@@ -18,6 +19,11 @@ class Repository  @Inject constructor (val repository: RepositoryDependencies) {
         }
 
         runBlocking {
+            /*
+            wait for job to finish
+            so we can use response inside viewmodel
+            i am certain job is not null at this point
+            */
             job!!.join()
         }
 

@@ -31,20 +31,26 @@ class SearchFragment : Fragment() {
             inflater, R.layout.fragment_search, container, false
         )
         val view: View = fragmentSearchBinding.getRoot()
-        setupSesrchView()
+        setupSearchView()
+        setupObservers()
         return view
     }
 
-    private fun setupSesrchView(){
+
+    private fun setupObservers() {
+
+        //TODO
+        //searchFragmentViewModel.
+    }
+
+    private fun setupSearchView(){
 
         fragmentSearchBinding.searchView.apply {
 
+            //Could not find this attribute in xml properties.
             isSubmitButtonEnabled=true
 
             //TODO use data binding
-
-            //TODO check internet before requesting
-            //checkConnectivity()
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
                 override fun onQueryTextChange(newText: String): Boolean {
@@ -53,21 +59,22 @@ class SearchFragment : Fragment() {
 
                 override fun onQueryTextSubmit(query: String): Boolean {
 
-                    //check internet before trying ot fetch data
+                    //check internet before trying to fetch data
                     if(!CheckConnectivity(context).isConnected()){
                         Toast.makeText(context,"Please connect to internet",Toast.LENGTH_LONG).show()
                     }else {
 
-                        //ask viewmodel to ask repo for data over network
+                        //ask view-model to ask repository for data over network
                         searchFragmentViewModel.getAcronymsFromRepository(query)
                     }
                     return false
 
                 }})
-
             }
-
         }
+
+
+
 
     }
 
