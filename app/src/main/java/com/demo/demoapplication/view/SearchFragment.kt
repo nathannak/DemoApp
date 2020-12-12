@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.demo.demoapplication.R
 import com.demo.demoapplication.databinding.FragmentSearchBinding
+import com.demo.demoapplication.util.CheckConnectivity
 import com.demo.demoapplication.viewmodel.SearchFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,10 +40,11 @@ class SearchFragment : Fragment() {
         fragmentSearchBinding.searchView.apply {
 
             isSubmitButtonEnabled=true
-            queryHint="Acronym"
-            isIconifiedByDefault=false
 
-            //Todo use data binding
+            //TODO use data binding
+
+            //TODO check internet before requesting
+            //checkConnectivity()
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
                 override fun onQueryTextChange(newText: String): Boolean {
@@ -50,23 +53,21 @@ class SearchFragment : Fragment() {
 
                 override fun onQueryTextSubmit(query: String): Boolean {
 
-                    //TODO check internet before requesting
-                    //checkConnectivity()
+                    //check internet before trying ot fetch data
+                    if(!CheckConnectivity(context).isConnected()){
+                        Toast.makeText(context,"Please connect to internet",Toast.LENGTH_LONG).show()
+                    }else {
 
-                    searchFragmentViewModel.getAcronymsFromRepository(query)
-                    //searchFragmentViewModel.mLivaData.observe()
+                        //ask viewmodel to ask repo for data over network
+                        searchFragmentViewModel.getAcronymsFromRepository(query)
+                    }
                     return false
-                }
 
-            })
+                }})
+
+            }
 
         }
 
     }
 
-//    private fun checkConnectivity(){
-//
-//
-//    }
-
-}

@@ -6,31 +6,23 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.demo.demoapplication.model.AcronymItem
-import com.demo.demoapplication.di.RepositoryDependencies
 import com.demo.demoapplication.model.Acronym
 import com.demo.demoapplication.repository.Repository
-import kotlinx.coroutines.*
-import retrofit2.Response
 
 class SearchFragmentViewModel @ViewModelInject constructor(
-//    val repository: RepositoryDependencies,
+    //Todo consider private
     val repository : Repository,
     @Assisted  val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     val mLivaData : MutableLiveData<Acronym> = MutableLiveData()
 
-//    fun provideStringFromVM(): String {
-//        return repository.provideString()
-//    }
-
     fun getAcronymsFromRepository(query: String){
-//        repository.fetchfromRemote(query)
-        repository.fetchfromRemote(query)
+
+        //ask repository to get data from network
+        repository.fetchFromRemote(query)
 
         //sanitize repsonse
-
         Log.d("apptag", repository.response!!.code().toString())
         Log.d("apptag", repository.response!!.errorBody().toString())
         Log.d("apptag", repository.response!!.message().toString())
@@ -38,12 +30,8 @@ class SearchFragmentViewModel @ViewModelInject constructor(
         Log.d("apptag", repository.response!!.body().toString())
         Log.d("apptag", repository.response!!.raw().toString())
 
-//        if(repository.response.) {
-//            //no repsonse
-//        }
-         if (repository.response!!.code()!=200){
-
-        }
+        //sanitize response here, becasue we setup live data here for ui to observe
+        //ServerResponseAnalyzer.
 
         mLivaData.value = repository.response!!.body()
     }

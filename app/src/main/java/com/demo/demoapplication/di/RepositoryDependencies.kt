@@ -2,7 +2,8 @@ package com.demo.demoapplication.di
 
 import android.content.Context
 import com.demo.demoapplication.model.AcronymApi
-import com.demo.demoapplication.util.constants
+import com.demo.demoapplication.util.CheckConnectivity
+import com.demo.demoapplication.util.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,10 +28,16 @@ class RepositoryDependencies @Inject constructor() {
     @Singleton
     fun provideAcronymService(): AcronymApi {
         return Retrofit.Builder()
-            .baseUrl(constants.BASE_URL)
+            .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(AcronymApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideConnectivity(@ApplicationContext context: Context ): CheckConnectivity {
+        return CheckConnectivity(context)
     }
 
 }

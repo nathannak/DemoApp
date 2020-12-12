@@ -1,6 +1,6 @@
 package com.demo.demoapplication.util
 
-class constants {
+class Constants {
 
     companion object {
 

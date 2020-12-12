@@ -11,7 +11,7 @@ class Repository  @Inject constructor (val repository: RepositoryDependencies) {
     var response : Response<Acronym>? = null
     var job : Job? = null
 
-    fun fetchfromRemote(query:String) {
+    fun fetchFromRemote(query:String) {
 
             job = CoroutineScope(Dispatchers.IO).launch {
                 fetchDataUsingRetrofit(query)

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <FrameLayout
@@ -11,9 +12,17 @@
             android:id="@+id/search_view"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:queryHint="Search"
-            android:visibility="visible"
-            tools:visibility="visible" />
+            android:divider="@android:drawable/divider_horizontal_textfield"
+            android:iconifiedByDefault="false"
+            android:queryHint="Acronym"
+            android:visibility="visible"/>
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="743dp"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
 
     </FrameLayout>
 </layout>
