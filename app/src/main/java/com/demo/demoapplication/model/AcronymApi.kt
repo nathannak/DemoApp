@@ -1,11 +1,11 @@
-package com.devtides.androidcoroutinesretrofit.model
+package com.demo.demoapplication.model
 
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Query
 
-interface CountriesApi {
+interface AcronymApi {
 
-    @GET("DevTides/countries/master/countriesV2.json")
-    suspend fun getCountries(): Response<List<Country>>
-
+    @GET("http://www.nactem.ac.uk/software/acromine/dictionary.py")
+    suspend fun getAcronym(@Query("sf") sf:String): Response<Acronym>
 }

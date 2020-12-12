@@ -1,17 +1,22 @@
 package com.demo.demoapplication.view
 
-import android.R.attr.data
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.demo.demoapplication.R
 import com.demo.demoapplication.databinding.FragmentSearchBinding
+import com.demo.demoapplication.viewmodel.SearchFragmentViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class SearchFragment : Fragment() {
+
+    val searchFragmentViewModel : SearchFragmentViewModel by viewModels()
 
     private lateinit var fragmentSearchBinding :FragmentSearchBinding
 
@@ -24,14 +29,29 @@ class SearchFragment : Fragment() {
             inflater, R.layout.fragment_search, container, false
         )
         val view: View = fragmentSearchBinding.getRoot()
+        setupSesrchView()
+        return view
+    }
+
+    private fun setupSesrchView(){
 
         fragmentSearchBinding.searchView.isSubmitButtonEnabled=true
         fragmentSearchBinding.searchView.queryHint="Acronym"
         fragmentSearchBinding.searchView.isIconifiedByDefault=false
 
-        return view
+        //Todo use data binding
+        fragmentSearchBinding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
-//        return inflater.inflate(R.layout.fragment_search, container, false)
+            override fun onQueryTextChange(newText: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextSubmit(query: String): Boolean {
+                searchFragmentViewModel.getAcronymsFromRepository(query)
+                return false
+            }
+
+        })
     }
 
 }
