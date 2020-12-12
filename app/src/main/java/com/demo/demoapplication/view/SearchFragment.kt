@@ -35,26 +35,38 @@ class SearchFragment : Fragment() {
 
     private fun setupSesrchView(){
 
-        fragmentSearchBinding.searchView.isSubmitButtonEnabled=true
-        fragmentSearchBinding.searchView.queryHint="Acronym"
-        fragmentSearchBinding.searchView.isIconifiedByDefault=false
+        fragmentSearchBinding.searchView.apply {
 
-        //Todo use data binding
-        fragmentSearchBinding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            isSubmitButtonEnabled=true
+            queryHint="Acronym"
+            isIconifiedByDefault=false
 
-            override fun onQueryTextChange(newText: String): Boolean {
-                return false
-            }
+            //Todo use data binding
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
-            override fun onQueryTextSubmit(query: String): Boolean {
+                override fun onQueryTextChange(newText: String): Boolean {
+                    return false
+                }
 
-                //TODO check internet before requesting
-                searchFragmentViewModel.getAcronymsFromRepository(query)
-                //searchFragmentViewModel.mLivaData.observe()
-                return false
-            }
+                override fun onQueryTextSubmit(query: String): Boolean {
 
-        })
+                    //TODO check internet before requesting
+                    //checkConnectivity()
+
+                    searchFragmentViewModel.getAcronymsFromRepository(query)
+                    //searchFragmentViewModel.mLivaData.observe()
+                    return false
+                }
+
+            })
+
+        }
+
     }
+
+//    private fun checkConnectivity(){
+//
+//
+//    }
 
 }
