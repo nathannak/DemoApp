@@ -21,6 +21,7 @@ class SearchFragmentViewModel @ViewModelInject constructor(
     var response : Response<Acronym>? = null
     val acronymLiveData : MutableLiveData<Acronym> = MutableLiveData()
     val errorLoading : MutableLiveData<Boolean> = MutableLiveData()
+    val noResults : MutableLiveData<Boolean> = MutableLiveData()
 
     fun getAcronymsFromRepository(query: String){
 
@@ -37,16 +38,24 @@ class SearchFragmentViewModel @ViewModelInject constructor(
 
         /*
         check response, because we setup live data here for ui to observe
-        it's better to wrap retrpfit call with generic spi response class
-        but this was we hsve more power over what to depending on
+        it's better to wrap retrofit call with generic api response class
+        However this way we have more power over what to depending on
         different HTTP responses, both methods work
         */
+
+        //for testing
+        //response=null
 
         if(ServerResponseAnalyzer(response).errorReturned()){
             errorLoading.value=true
         }
-
-        acronymLiveData.value = repository.response!!.body()
+        //already checked for null response
+        else if(response?.body()?.size==0){
+            noResults.value=true
+        }
+        else{
+            acronymLiveData.value = repository.response!!.body()
+        }
 
     }
 
