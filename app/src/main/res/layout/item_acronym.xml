@@ -3,7 +3,7 @@
 
     <data>
         <variable
-            name="acronymItem"
+            name="longForm"
             type="com.demo.demoapplication.model.Lf" />
     </data>
 
@@ -18,7 +18,7 @@
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{acronymItem.lf}"/>
+                android:text="@{longForm.lf}"/>
 
     </LinearLayout>
 </layout>

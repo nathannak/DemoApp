@@ -13,7 +13,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.demo.demoapplication.R
 import com.demo.demoapplication.databinding.FragmentSearchBinding
-import com.demo.demoapplication.model.AcronymItem
 import com.demo.demoapplication.model.Lf
 import com.demo.demoapplication.util.CheckConnectivity
 import com.demo.demoapplication.viewmodel.SearchFragmentViewModel
@@ -35,10 +34,9 @@ class SearchFragment : Fragment() {
             inflater, R.layout.fragment_search, container, false
         )
         val view: View = fragmentSearchBinding.getRoot()
+
         setupSearchView()
         setupObservers()
-
-
 
         return view
     }
@@ -46,7 +44,7 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //setup adapter
+        //setup adapter here
         fragmentSearchBinding.acronymList.apply{
             layoutManager = LinearLayoutManager(context)
             adapter = acronymsListAdapter
@@ -56,33 +54,54 @@ class SearchFragment : Fragment() {
 
     private fun setupObservers() {
 
-        //TODO
         searchFragmentViewModel.acronymLiveData.observe(viewLifecycleOwner, Observer { acronym ->
             acronym?.let {
-                fragmentSearchBinding.acronymList.visibility=View.VISIBLE
-                fragmentSearchBinding.errorTextView.visibility=View.INVISIBLE
-                fragmentSearchBinding.noResultsTextView.visibility=View.INVISIBLE
+                fragmentSearchBinding.apply {
+                    acronymList.visibility=View.VISIBLE
+                    errorTextView.visibility=View.INVISIBLE
+                    noResultsTextView.visibility=View.INVISIBLE
+                    progressBar.visibility=View.INVISIBLE
+                }
 
-                acronymsListAdapter.updateDogList(acronym.get(0).lfs as ArrayList<Lf>)
+                acronymsListAdapter.updateAcronymList(acronym.get(0).lfs as ArrayList<Lf>)
             }
         })
 
         searchFragmentViewModel.errorLoading.observe(viewLifecycleOwner, Observer{ error ->
             error?.let {
                 if (it) {
-                    fragmentSearchBinding.errorTextView.visibility = View.VISIBLE
-                    fragmentSearchBinding.acronymList.visibility = View.INVISIBLE
-                    fragmentSearchBinding.noResultsTextView.visibility=View.INVISIBLE
+                    fragmentSearchBinding.apply {
+                        errorTextView.visibility = View.VISIBLE
+                        acronymList.visibility = View.INVISIBLE
+                        noResultsTextView.visibility = View.INVISIBLE
+                        progressBar.visibility = View.INVISIBLE
+                    }
                 }
             }
         })
 
         searchFragmentViewModel.noResults.observe(viewLifecycleOwner, Observer{ noRes ->
             noRes?.let{
-                if(it){
-                    fragmentSearchBinding.noResultsTextView.visibility=View.VISIBLE
-                    fragmentSearchBinding.acronymList.visibility=View.INVISIBLE
-                    fragmentSearchBinding.errorTextView.visibility = View.INVISIBLE
+                if(it) {
+                    fragmentSearchBinding.apply {
+                        noResultsTextView.visibility = View.VISIBLE
+                        acronymList.visibility = View.INVISIBLE
+                        errorTextView.visibility = View.INVISIBLE
+                        progressBar.visibility = View.INVISIBLE
+                    }
+                }
+            }
+        })
+
+        searchFragmentViewModel.isLoading.observe(viewLifecycleOwner, Observer{ isLoading ->
+            isLoading?.let{
+                if(it) {
+                    fragmentSearchBinding.apply {
+                        progressBar.visibility = View.VISIBLE
+                        noResultsTextView.visibility = View.INVISIBLE
+                        acronymList.visibility = View.INVISIBLE
+                        errorTextView.visibility = View.INVISIBLE
+                    }
                 }
             }
         })
@@ -96,14 +115,27 @@ class SearchFragment : Fragment() {
             //Could not find this attribute in xml properties.
             isSubmitButtonEnabled=true
 
-            //onclick listeners should be implemented with Dstabinding
-            //but since i am injecting viewmodel here and
-            //it is is initlized by viewmodels()
-            //it can not simply be used and initilized
-            //in the xml layout
+            /*
+            onclicklisteners should be implemented using Databinding
+            however, since i am injecting viewmodel here, and
+            viewmodel is initialized by viewmodels()
+            it can not simply be initialized in the xml layout
+            */
+
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
                 override fun onQueryTextChange(newText: String): Boolean {
+
+                    //clear everything in case user deletes the query
+                    if(newText.length==0){
+
+                        fragmentSearchBinding.apply {
+                            errorTextView.visibility=View.INVISIBLE
+                            acronymList.visibility=View.INVISIBLE
+                            noResultsTextView.visibility=View.INVISIBLE
+                        }
+                    }
+
                     return false
                 }
 
@@ -121,6 +153,8 @@ class SearchFragment : Fragment() {
 
                 }})
             }
+
+
         }
 
     }
