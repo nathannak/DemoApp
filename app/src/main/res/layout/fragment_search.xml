@@ -36,7 +36,7 @@
                 android:id="@+id/errorTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Error loading results"
+                android:text="@string/error_loading_results"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +47,7 @@
                 android:id="@+id/noResultsTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No results could be found for this query"
+                android:text="@string/no_results_could_be_found_for_this_query"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/acronymList"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -65,6 +65,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/acronymList"
                 app:layout_constraintTop_toTopOf="@+id/search_view" />
+
+            <ImageView
+                android:id="@+id/magnifierImageView"
+                android:layout_width="59dp"
+                android:layout_height="65dp"
+                android:contentDescription="@string/search_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/acronymList"
+                app:layout_constraintStart_toStartOf="@+id/acronymList"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_search_24" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

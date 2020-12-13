@@ -41,13 +41,6 @@ class SearchFragmentViewModel @ViewModelInject constructor(
         response = repository.response
         isLoading.value=false
 
-        Log.d("apptag", repository.response!!.code().toString())
-        Log.d("apptag", repository.response!!.errorBody().toString())
-        Log.d("apptag", repository.response!!.message().toString())
-        Log.d("apptag", repository.response!!.headers().toString())
-        Log.d("apptag", repository.response!!.body().toString())
-        Log.d("apptag", repository.response!!.raw().toString())
-
         /*
         check response, because we setup live data here for ui to observe
         it's better to wrap retrofit call with generic api response class

@@ -61,6 +61,7 @@ class SearchFragment : Fragment() {
                     errorTextView.visibility=View.INVISIBLE
                     noResultsTextView.visibility=View.INVISIBLE
                     progressBar.visibility=View.INVISIBLE
+                    magnifierImageView.visibility=View.INVISIBLE
                 }
 
                 acronymsListAdapter.updateAcronymList(acronym.get(0).lfs as ArrayList<Lf>)
@@ -75,6 +76,7 @@ class SearchFragment : Fragment() {
                         acronymList.visibility = View.INVISIBLE
                         noResultsTextView.visibility = View.INVISIBLE
                         progressBar.visibility = View.INVISIBLE
+                        magnifierImageView.visibility=View.INVISIBLE
                     }
                 }
             }
@@ -88,6 +90,8 @@ class SearchFragment : Fragment() {
                         acronymList.visibility = View.INVISIBLE
                         errorTextView.visibility = View.INVISIBLE
                         progressBar.visibility = View.INVISIBLE
+                        magnifierImageView.visibility=View.INVISIBLE
+
                     }
                 }
             }
@@ -101,6 +105,8 @@ class SearchFragment : Fragment() {
                         noResultsTextView.visibility = View.INVISIBLE
                         acronymList.visibility = View.INVISIBLE
                         errorTextView.visibility = View.INVISIBLE
+                        magnifierImageView.visibility=View.INVISIBLE
+
                     }
                 }
             }
@@ -126,10 +132,11 @@ class SearchFragment : Fragment() {
 
                 override fun onQueryTextChange(newText: String): Boolean {
 
-                    //clear everything in case user deletes the query
+                    //clear everything, in case user deletes the query
                     if(newText.length==0){
 
                         fragmentSearchBinding.apply {
+                            magnifierImageView.visibility=View.VISIBLE
                             errorTextView.visibility=View.INVISIBLE
                             acronymList.visibility=View.INVISIBLE
                             noResultsTextView.visibility=View.INVISIBLE
@@ -143,7 +150,7 @@ class SearchFragment : Fragment() {
 
                     //check internet before trying to fetch data
                     if(!CheckConnectivity(context).isConnected()){
-                        Toast.makeText(context,"Please connect to internet",Toast.LENGTH_LONG).show()
+                        Toast.makeText(context,"Please connect to internet",Toast.LENGTH_SHORT).show()
                     }else {
 
                         //ask view-model to ask repository for data over network
