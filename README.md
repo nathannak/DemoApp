@@ -14,7 +14,7 @@
     JUnit - Testing<br/><br>
     
 - How app is designed:<br/><br>
-    Retrofit object in injected to Repository class which is in charge of making a network call. Repository and response object are injected to ViewModel so it       can setup LiveData variables based on response results for UI to observe. UI then decides which widgets to show. ViewModel is also injected into                 SearchFragment. Databinding is used for RecyclerView, but could not be used with searchbar due to complications from ViewModel injection.<br/><br>
+    Retrofit object in injected to Repository class which is in charge of making a network call. Repository and response object are injected to ViewModel so it       can setup LiveData variables based on response results for UI to observe. UI then decides which widgets to show. ViewModel is also injected into                 SearchFragment. Databinding is used for RecyclerView, but could not be used with search bar listeners due to complications from ViewModel injection.<br/><br>
     
     <a href="https://ibb.co/syQNL6L"><img src="https://i.ibb.co/HnYbmxm/Arch.jpg" alt="Arch" border="0"></a>
         
