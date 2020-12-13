@@ -6,19 +6,19 @@
   
   <a href="https://ibb.co/1Q1T5qc"><img src="https://i.ibb.co/r0YHS69/Screen-Shot-2020-12-13-at-10-53-07-AM.png" alt="Screen-Shot-2020-12-13-at-10-53-07-AM" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'>upload images</a><br />
   
-  App uses following tech:<br/><br>
+ - App uses following tech:<br/><br>
     Networking - Retrofit<br/><br>
     Jetpack - Navigation<br/><br>
     DI - Hilt<br/><br>
     DataBinding<br/><br>
     JUnit - Testing<br/><br>
     
-    How app is designed:<br/><br>
+- How app is designed:<br/><br>
     Retrofit object in injected to Repository class which is in charge of making a network call. Repository and response object are injected to ViewModel so it       can setup LiveData variables based on response results for UI to observe. UI then decides which widgets to show.<br/><br>
     
     <a href="https://ibb.co/p2zNFkr"><img src="https://i.ibb.co/y0yKjxB/Untitled-Diagram.jpg" alt="Untitled-Diagram" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'>upload pic</a><br />
         
-Notes and thoughts:
+- Notes and thoughts:
 
 - Testing:
 
