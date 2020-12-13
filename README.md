@@ -26,7 +26,7 @@
   2- Tested across configuration changes, and sending app to background and bringing back to foreground
   to make sure it preserves state.  <br/><br>
   
-  <a href="https://ibb.co/tqgfLHs"><img src="https://i.ibb.co/9b6XZpT/Screen-Shot-2020-12-13-at-10-00-03-AM.png" alt="Screen-Shot-2020-12-13-at-10-00-03-AM" border="0"></a>
+<a href="https://ibb.co/PjPnXsX"><img src="https://i.ibb.co/NCJPDgD/Screen-Shot-2020-12-13-at-10-53-14-AM.png" alt="Screen-Shot-2020-12-13-at-10-53-14-AM" border="0"></a>
   
   <br/><br>
   Please see: https://youtu.be/Rcs0OzhEWig
