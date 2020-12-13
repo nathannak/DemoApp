@@ -18,6 +18,12 @@ import com.demo.demoapplication.util.CheckConnectivity
 import com.demo.demoapplication.viewmodel.SearchFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+/*
+Search Fragment, the only fragment in the app which is part of navigation graph and Main Activity
+
+Written by Nathan N on 12/13/20
+*/
+
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
 
@@ -44,7 +50,7 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //setup adapter here
+        //setup RecyclerView adapter
         fragmentSearchBinding.acronymList.apply{
             layoutManager = LinearLayoutManager(context)
             adapter = acronymsListAdapter

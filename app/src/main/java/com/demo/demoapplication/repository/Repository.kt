@@ -6,15 +6,22 @@ import kotlinx.coroutines.*
 import retrofit2.Response
 import javax.inject.Inject
 
+/*
+Repository in charge of making the network call.
+If we add a Room DB, it shoukd be added here as well.
+
+Written by Nathan N on 12/13/20
+*/
+
 //Inject retrofit via constructor
-class Repository  @Inject constructor (val repository: RepositoryDependencies) {
+class Repository  @Inject constructor (private val repository: RepositoryDependencies) {
 
     var response : Response<Acronym>? = null
 
     fun fetchFromRemote(query:String) {
 
-            val job = CoroutineScope(Dispatchers.IO).launch {
-                fetchDataUsingRetrofit(query)
+        val job = CoroutineScope(Dispatchers.IO).launch {
+            fetchDataUsingRetrofit(query)
         }
 
         runBlocking {
@@ -30,7 +37,6 @@ class Repository  @Inject constructor (val repository: RepositoryDependencies) {
 
     suspend fun fetchDataUsingRetrofit(query: String) {
 
-        //fetch from network using retrofit
         CoroutineScope(Dispatchers.IO).async {
             response = repository.provideAcronymService().getAcronym(query)
         }.await()

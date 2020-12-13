@@ -10,6 +10,12 @@ import com.demo.demoapplication.repository.Repository
 import com.demo.demoapplication.util.ServerResponseAnalyzer
 import retrofit2.Response
 
+/*
+ViewModel class for SearchFragment
+
+Written by Nathan N on 12/13/20
+*/
+
 class SearchFragmentViewModel @ViewModelInject constructor(
 
     //Inject repository to ViewModel using Hilt
@@ -23,15 +29,13 @@ class SearchFragmentViewModel @ViewModelInject constructor(
     @Assisted  val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    //response retrieved from repo
     var response : Response<Acronym>? = null
-
     val acronymLiveData : MutableLiveData<Acronym> = MutableLiveData()
 
     /*
-    These variables are meant to hold states, such as empty response, or no results state.
-    States can be grouped into a separate class.
-    But, i define them as variables here for simplicity.
+    These variables are meant to hold states, such as empty response, loading state, and no results state.
+    These States can be grouped into a separate class.
+    But, i define them as variables here for simplicity in Demo.
     */
     val errorLoading : MutableLiveData<Boolean> = MutableLiveData()
     val noResults    : MutableLiveData<Boolean> = MutableLiveData()
@@ -40,7 +44,7 @@ class SearchFragmentViewModel @ViewModelInject constructor(
     fun getAcronymsFromRepository(query: String){
 
         /*
-        ask repository to get data from network
+        Ask repository to get data from network,
         let UI to show progressbar while loading
         */
         isLoading.value=true
@@ -51,12 +55,11 @@ class SearchFragmentViewModel @ViewModelInject constructor(
         /*
         Inspect response here, because we setup live data in
         ViewModel for ui to observe.
-        it's better to wrap Retrofit call with generic api response class,
-        however this way we have more  readability and power over what
-        to do depending on different HTTP responses, both methods work
+        it's better to wrap Retrofit call with generic api response class.
+        However, this way we have more readability and control over what
+        to do depending on different HTTP responses, both methods work well depending on design.
         */
 
-        //Analyze the response
         if(ServerResponseAnalyzer(response).errorReturned()){
             errorLoading.value=true
         }
@@ -68,10 +71,9 @@ class SearchFragmentViewModel @ViewModelInject constructor(
             noResults.value=true
         }
         else{
+
             //At this point we are sure we have a proper response
             acronymLiveData.value = repository.response!!.body()
         }
-
     }
-
 }
