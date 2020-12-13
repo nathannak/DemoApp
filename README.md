@@ -8,6 +8,7 @@
   
  - App uses following tech:<br/><br>
     Networking - Retrofit<br/><br>
+    Networking - Coroutines<br/><br>
     Jetpack - Navigation<br/><br>
     DI - Hilt<br/><br>
     DataBinding<br/><br>
