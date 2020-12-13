@@ -14,9 +14,9 @@
     JUnit - Testing<br/><br>
     
 - How app is designed:<br/><br>
-    Retrofit object in injected to Repository class which is in charge of making a network call. Repository and response object are injected to ViewModel so it       can setup LiveData variables based on response results for UI to observe. UI then decides which widgets to show.<br/><br>
+    Retrofit object in injected to Repository class which is in charge of making a network call. Repository and response object are injected to ViewModel so it       can setup LiveData variables based on response results for UI to observe. UI then decides which widgets to show. ViewModel is also injected into                 SearchFragment<br/><br>
     
-    <a href="https://ibb.co/p2zNFkr"><img src="https://i.ibb.co/y0yKjxB/Untitled-Diagram.jpg" alt="Untitled-Diagram" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'>upload pic</a><br />
+    <a href="https://ibb.co/syQNL6L"><img src="https://i.ibb.co/HnYbmxm/Arch.jpg" alt="Arch" border="0"></a>
         
 - Notes and thoughts:
 
