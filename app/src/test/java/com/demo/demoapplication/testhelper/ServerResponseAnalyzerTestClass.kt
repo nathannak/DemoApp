@@ -1,5 +1,8 @@
 package com.demo.demoapplication.testhelper
 
+import com.demo.demoapplication.testhelper.helper.EmptyBodyResponseHelper
+import com.demo.demoapplication.testhelper.helper.OKReponseTestHelper
+import com.demo.demoapplication.testhelper.helper.UnauthorizedResponseHelper
 import com.demo.demoapplication.util.ServerResponseAnalyzer
 import kotlinx.coroutines.*
 import org.junit.Assert

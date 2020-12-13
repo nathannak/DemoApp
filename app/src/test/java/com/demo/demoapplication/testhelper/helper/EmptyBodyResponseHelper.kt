@@ -1,4 +1,4 @@
-package com.demo.demoapplication.testhelper
+package com.demo.demoapplication.testhelper.helper
 
 import com.demo.demoapplication.model.Acronym
 import kotlinx.coroutines.CoroutineScope
