@@ -28,12 +28,5 @@ class AcronymListAdapter(var acronymList: ArrayList<Lf>) : RecyclerView.Adapter<
         holder.view.longForm = acronymList[position]
     }
 
-//    override fun onDogClicked(v: View) {
-//        val uuid = v.dogId.text.toString().toInt()
-//        val action = ListFragmentDirections.actionDetailFragment()
-//        action.dogUuid = uuid
-//        Navigation.findNavController(v).navigate(action)
-//    }
-
     class DogViewHolder(var view: ItemAcronymBinding) : RecyclerView.ViewHolder(view.root)
 }

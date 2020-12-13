@@ -5,6 +5,9 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Log
 
+/*
+Class to check if network state shows as connected, before fetching from api
+ */
 class CheckConnectivity(val context: Context) {
 
     fun isConnected(): Boolean {

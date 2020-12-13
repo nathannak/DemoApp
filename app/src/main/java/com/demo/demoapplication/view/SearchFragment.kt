@@ -122,9 +122,9 @@ class SearchFragment : Fragment() {
             isSubmitButtonEnabled=true
 
             /*
-            onclicklisteners should be implemented using Databinding
-            however, since i am injecting viewmodel here, and
-            viewmodel is initialized by viewmodels()
+            OnClickListeners should be implemented using Databinding.
+            However, since i am injecting ViewmMdel here, and
+            ViewModel is initialized using 'by viewModels()'
             it can not simply be initialized in the xml layout
             */
 
@@ -132,7 +132,7 @@ class SearchFragment : Fragment() {
 
                 override fun onQueryTextChange(newText: String): Boolean {
 
-                    //clear everything, in case user deletes the query
+                    //Clear everything, when user deletes the query
                     if(newText.length==0){
 
                         fragmentSearchBinding.apply {
@@ -148,19 +148,18 @@ class SearchFragment : Fragment() {
 
                 override fun onQueryTextSubmit(query: String): Boolean {
 
-                    //check internet before trying to fetch data
+                    //Check internet connection before trying to fetch data
                     if(!CheckConnectivity(context).isConnected()){
                         Toast.makeText(context,"Please connect to internet",Toast.LENGTH_SHORT).show()
                     }else {
 
-                        //ask view-model to ask repository for data over network
+                        //Ask ViewModel to ask repository for data over network
                         searchFragmentViewModel.getAcronymsFromRepository(query)
                     }
                     return false
 
                 }})
             }
-
 
         }
 
