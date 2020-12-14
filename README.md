@@ -57,5 +57,6 @@ from starting emulator on my mac while having other processes running.
   1- Use Room to cache results so we do not make a web call every time.<br/><br>
   2- Use expose annotation to only filter for what we actually need.<br/><br>
   3- Add timeout to Retrofit request.<br/><br>
-  4- Use Generic Api Response from Google samples and wrap Retrofit response.
+  4- Use Generic Api Response from Google samples and wrap Retrofit response.<br/><br>
+  5- Add Exception handling to Coroutine job.
   
