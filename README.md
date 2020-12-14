@@ -25,12 +25,14 @@
 
   1- Used Charles Proxy for mac to simulate slow commenction, no problems observed. <br/><br>
   2- Tested across configuration changes, and sending app to background and bringing back to foreground
-  to make sure it preserves state.  <br/><br>
+  to make sure it preserves the app state.  <br/><br>
   
 <a href="https://ibb.co/PjPnXsX"><img src="https://i.ibb.co/NCJPDgD/Screen-Shot-2020-12-13-at-10-53-14-AM.png" alt="Screen-Shot-2020-12-13-at-10-53-14-AM" border="0"></a>
-  
   <br/><br>
   Please see: https://youtu.be/Rcs0OzhEWig
+  <br/><br>
+  App does not run a query if internet is unavailable:<br/><br>
+  <a href="https://ibb.co/jvG4LKy"><img src="https://i.ibb.co/DDkK7X9/Screen-Shot-2020-12-13-at-5-14-23-PM.png" alt="Screen-Shot-2020-12-13-at-5-14-23-PM" border="0"></a>
   
 - App ANR'ed only once during many dry runs, looking at the stack i believe this is due to pressure
 from starting emulator on my mac while having other processes running.
@@ -41,6 +43,9 @@ from starting emulator on my mac while having other processes running.
   2- Make sure reponse analyzer class is able to detect empty body response.<br/><br>
   3- Make sure reponse analyzer class is able to detect null response.<br/><br>
   4- Make sure reponse analyzer class is able to detect OK response.<br/><br>
+  
+  <a href="https://ibb.co/GJb3Rq1"><img src="https://i.ibb.co/vBKvkSr/Screen-Shot-2020-12-13-at-9-39-10-AM.png" alt="Screen-Shot-2020-12-13-at-9-39-10-AM" border="0"></a>
+  <br/><br>
   
 - Other thoughts and notes:
 
