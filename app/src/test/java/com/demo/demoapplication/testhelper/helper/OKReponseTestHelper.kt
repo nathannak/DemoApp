@@ -14,7 +14,7 @@ import retrofit2.http.Query
 /*
 HELPER FUNCTIONS FOR TESTING OK Response
 
-Written by Nathan N on 12/13/20
+Written by  N on 12/13/20
 */
 
 class OKReponseTestHelper  {

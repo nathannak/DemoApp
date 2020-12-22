@@ -7,7 +7,7 @@
   <a href="https://ibb.co/1Q1T5qc"><img src="https://i.ibb.co/r0YHS69/Screen-Shot-2020-12-13-at-10-53-07-AM.png" alt="Screen-Shot-2020-12-13-at-10-53-07-AM" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'>upload images</a><br />
   
  - App uses following tech:<br/><br>
-    Networking - Retrofit<br/><br>
+   Wetworking - Retrofit<br/><br>
     Networking - Coroutines<br/><br>
     Jetpack - Navigation<br/><br>
     DI - Hilt<br/><br>

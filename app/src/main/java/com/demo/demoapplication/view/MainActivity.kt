@@ -8,7 +8,7 @@ import dagger.hilt.android.AndroidEntryPoint
 /*
 App entry point
 
-Written by Nathan N on 12/13/20
+Written by W on 12/13/20
 */
 
 @AndroidEntryPoint

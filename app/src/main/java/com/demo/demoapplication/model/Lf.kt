@@ -1,6 +1,6 @@
 package com.demo.demoapplication.model
 
-//Written by Nathan N on 12/13/20
+//Written by W on 12/13/20
 
 data class Lf(
     val freq: Int,

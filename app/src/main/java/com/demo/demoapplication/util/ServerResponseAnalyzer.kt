@@ -8,7 +8,7 @@ This class created to analyze HTTP responses inside ViewModel, so we can hook up
 It is better practice to have a call adapter factory, and wrap retrofit object around it.
 I am using this methods for simplicity in this Demo app, also it gives me better grip for unit testing.
 
-Written by Nathan N on 12/13/20
+Written by W on 12/13/20
 */
 
 class ServerResponseAnalyzer(val response: Response<Acronym>?) {

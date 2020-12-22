@@ -5,7 +5,7 @@ class Constants {
 /*
 Class to hold constant variables
 
-Written by Nathan N on 12/13/20
+Written by W on 12/13/20
 */
 
 companion object {

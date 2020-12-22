@@ -12,7 +12,7 @@ import retrofit2.http.GET
 /*
 HELPER FUNCTIONS FOR TESTING UNAUTHORIZED RESPONSE
 
-Written by Nathan N on 12/13/20
+Written by  N on 12/13/20
 */
 
 class UnauthorizedResponseHelper {

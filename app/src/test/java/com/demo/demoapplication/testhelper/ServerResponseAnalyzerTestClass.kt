@@ -16,7 +16,7 @@ Test class to see if ServerResponseAnalyzer class is able to detect:
 2- OK response [should return false]
 3- Empty body response [should return false]
 
-Written by Nathan N on 12/13/20
+Written by  N on 12/13/20
 */
 
 class ServerResponseAnalyzerTestClass () {

@@ -1,5 +1,6 @@
 package com.demo.demoapplication.repository
 
+import androidx.lifecycle.MutableLiveData
 import com.demo.demoapplication.di.RepositoryDependencies
 import com.demo.demoapplication.model.Acronym
 import kotlinx.coroutines.*
@@ -8,38 +9,30 @@ import javax.inject.Inject
 
 /*
 Repository in charge of making the network call.
-If we add a Room DB, it shoukd be added here as well.
+If we add a Room DB, it should be added here as well.
 
-Written by Nathan N on 12/13/20
+Written by W on 12/13/20
 */
 
 //Inject retrofit via constructor
-class Repository  @Inject constructor (private val repository: RepositoryDependencies) {
+class Repository @Inject constructor(private val repository: RepositoryDependencies) {
 
-    var response : Response<Acronym>? = null
+    val mutableLiveData : MutableLiveData<Resource<Acronym>> = MutableLiveData()
 
-    fun fetchFromRemote(query:String) {
-
-        val job = CoroutineScope(Dispatchers.IO).launch {
-            fetchDataUsingRetrofit(query)
-        }
-
-        runBlocking {
-            /*
-            wait for job to finish
-            so we can use response inside ViewModel.
-            We are certain job is not null at this point
-            */
-            job.join()
-        }
-
+    suspend fun fetchFromRemote(query: String) : MutableLiveData<Resource<Acronym>> {
+        return fetchDataUsingRetrofit(query)
     }
 
-    suspend fun fetchDataUsingRetrofit(query: String) {
+    private suspend fun fetchDataUsingRetrofit(query: String) : MutableLiveData<Resource<Acronym>> {
 
-        CoroutineScope(Dispatchers.IO).async {
-            response = repository.provideAcronymService().getAcronym(query)
-        }.await()
+        val response = repository.provideAcronymService().getAcronym(query)
+
+        if (response.isSuccessful) {
+            mutableLiveData.value = Resource.success(response.body())
+            return  mutableLiveData
+        }else {
+            mutableLiveData.value = Resource.error(response.message(), null)
+            return  mutableLiveData
+        }
     }
-
 }

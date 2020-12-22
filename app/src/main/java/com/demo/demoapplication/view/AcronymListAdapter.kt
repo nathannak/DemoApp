@@ -12,7 +12,7 @@ import com.demo.demoapplication.model.Lf
 
 Recycler view for search fragment, uses DataBinding
 
-Written by Nathan N on 12/13/20
+Written by W on 12/13/20
 */
 
 class AcronymListAdapter(var acronymList: ArrayList<Lf>) : RecyclerView.Adapter<AcronymListAdapter.DogViewHolder>() {

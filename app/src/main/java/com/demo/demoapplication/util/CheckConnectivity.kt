@@ -9,7 +9,7 @@ import android.util.Log
 Class to check if network state shows as connected, before fetching from api.
 This is a very common class, and can be found in internet.
 
-Written by Nathan N on 12/13/20
+Written by W on 12/13/20
 */
 
 class CheckConnectivity(private val context: Context) {

@@ -14,7 +14,7 @@ import javax.inject.Singleton
 /*
 Module to provide Retrofit object to our Repository
 
-Written by Nathan N on 12/13/20
+Written by W on 12/13/20
 */
 
 @InstallIn(ApplicationComponent::class)
