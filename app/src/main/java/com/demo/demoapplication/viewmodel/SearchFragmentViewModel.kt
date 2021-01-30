@@ -1,5 +1,6 @@
 package com.demo.demoapplication.viewmodel
 
+import android.util.Log
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
@@ -9,10 +10,9 @@ import androidx.lifecycle.viewModelScope
 import com.demo.demoapplication.model.Acronym
 import com.demo.demoapplication.repository.Repository
 import com.demo.demoapplication.repository.Resource
-import com.demo.demoapplication.util.ServerResponseAnalyzer
-import kotlinx.coroutines.async
+import com.demo.demoapplication.room.AcronymEntity
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import retrofit2.Response
 
 /*
 ViewModel class for SearchFragment
@@ -27,7 +27,7 @@ class SearchFragmentViewModel @ViewModelInject constructor(
     @Assisted val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    var acronymLiveData: MutableLiveData<Resource<Acronym>> = MutableLiveData()
+    var acronymLiveData: MutableLiveData<Resource<List<AcronymEntity>>> = MutableLiveData()
 
     /*
     These variables are meant to hold states, such as empty response, loading state, and no results state.
@@ -43,8 +43,16 @@ class SearchFragmentViewModel @ViewModelInject constructor(
             let UI to show progressbar while loading
             */
 
-            acronymLiveData.value = Resource.loading(null)
-            acronymLiveData.value = repository.fetchFromRemote(query).value
+            repository.fetchAcronym(query).collect {
+                acronymLiveData.value = it
+                Log.e("tag","sample")
+            }
+//            acronymLiveData.value = Resource.loading(null)
+//
+//            acronymLiveData.value = repository.fetchFromRemote(query)
+
+            //Added
+//            repository.insertIntoDB()
         }
     }
 }

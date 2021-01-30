@@ -16,6 +16,7 @@ import com.demo.demoapplication.databinding.FragmentSearchBinding
 import com.demo.demoapplication.model.Acronym
 import com.demo.demoapplication.model.Lf
 import com.demo.demoapplication.repository.Status
+import com.demo.demoapplication.room.AcronymEntity
 import com.demo.demoapplication.util.CheckConnectivity
 import com.demo.demoapplication.viewmodel.SearchFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -104,7 +105,7 @@ class SearchFragment : Fragment() {
         }
     }
 
-    private fun dataPage(acronym: Acronym) {
+    private fun dataPage(acronym: List<AcronymEntity>) {
         fragmentSearchBinding.apply {
             acronymList.visibility = View.VISIBLE
             errorTextView.visibility = View.INVISIBLE
@@ -113,7 +114,7 @@ class SearchFragment : Fragment() {
             magnifierImageView.visibility = View.INVISIBLE
         }
 
-        acronymsListAdapter.updateAcronymList(acronym[0].lfs as ArrayList<Lf>)
+        acronymsListAdapter.updateAcronymList(acronym.first().acronymLongFormat[0].lfs as ArrayList<Lf>)
     }
 
     private fun emptyResultPage() {
